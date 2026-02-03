@@ -13,8 +13,6 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -32,26 +30,20 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-    // AndroidX Core & UI
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-
-    // Google Nearby Connections (Bina internet file sharing ke liye)
+    
+    // Nearby Connections
     implementation("com.google.android.gms:play-services-nearby:19.0.0")
 
-    // ML Kit Hand Detection (Fist/Mutthi detect karne ke liye - Stable Version)
+    // ML Kit Hand Detection (Fixed Version)
     implementation("com.google.mlkit:hand-detection:16.0.0")
 
-    // CameraX (ML Kit ko video feed dene ke liye)
+    // CameraX
     val cameraxVersion = "1.3.1"
     implementation("androidx.camera:camera-core:$cameraxVersion")
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
