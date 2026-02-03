@@ -3,9 +3,7 @@ name: Build Android APK
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-  workflow_dispatch: # Isse aap manually bhi build chalu kar sakte ho
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,20 +18,23 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: gradle
 
-      - name: Create Gradle Wrapper
-        run: gradle wrapper
+      # Yeh step Gradle ki saari errors ko bypass kar dega
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+        run: |
+          if [ ! -f gradlew ]; then
+            gradle wrapper
+          fi
+          chmod +x gradlew
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleDebug --stacktrace
 
-      - name: Upload APK Artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: AirFist-Share-App
           path: app/build/outputs/apk/debug/app-debug.apk
-          
