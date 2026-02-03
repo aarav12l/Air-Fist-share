@@ -19,22 +19,18 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # Yeh step Gradle ki saari errors ko bypass kar dega
+      # Forcefully install stable Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: 8.0 
 
-      - name: Grant execute permission for gradlew
-        run: |
-          if [ ! -f gradlew ]; then
-            gradle wrapper
-          fi
-          chmod +x gradlew
-
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build with Gradle
+        run: gradle assembleDebug --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: AirFist-Share-App
-          path: app/build/outputs/apk/debug/app-debug.apk
+          name: AirFist-Share-APK
+          path: app/build/outputs/apk/debug/*.apk
+          
