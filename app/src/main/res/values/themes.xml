@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.AirFistShare" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#BB86FC</item>
-        <item name="android:statusBarColor">#121212</item>
-    </style>
-</manifest>
-  
