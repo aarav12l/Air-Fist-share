@@ -40,7 +40,7 @@ dependencies {
     // Nearby Connections
     implementation("com.google.android.gms:play-services-nearby:19.0.0")
 
-    // ML Kit Hand Detection (Fixed Version)
+    // ML Kit Hand Detection (Version fix kiya hai)
     implementation("com.google.mlkit:hand-detection:16.0.0")
 
     // CameraX
