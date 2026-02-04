@@ -14,15 +14,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      # Yeh step 9.3 ko hata kar 8.2 install karega
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         with:
-          gradle-version: 8.2
+          gradle-version: 8.5 # Isse naya version nahi uthayega
 
       - name: Build with Gradle
         run: |
-          gradle wrapper --gradle-version 8.2
+          if [ ! -f gradlew ]; then
+            gradle wrapper --gradle-version 8.5
+          fi
           chmod +x gradlew
           ./gradlew assembleDebug --stacktrace
 
